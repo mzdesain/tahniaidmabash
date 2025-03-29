@@ -1,54 +1,127 @@
-const twibbonImg = document.getElementById("twibbonImg");
-const inputName = document.getElementById("inputName");
-const inputPosition = document.getElementById("inputPosition");
-const downloadBtn = document.getElementById("downloadBtn");
-
-function updateText() {
-    document.getElementById("name").innerText = inputName.value || "Nama";
-    document.getElementById("position").innerText = inputPosition.value || "Keterangan";
-    downloadBtn.disabled = !(inputName.value || inputPosition.value);
+@font-face {
+    font-family: 'Gotham';
+    src: url('Gotham-Bold.woff2') format('woff2'),
+         url('Gotham-Bold.woff') format('woff');
+    font-weight: bold;
 }
 
-async function loadImage(url) {
-    return new Promise((resolve, reject) => {
-        let img = new Image();
-        img.crossOrigin = "anonymous";
-        img.src = url;
-        img.onload = () => resolve(img);
-        img.onerror = () => reject(new Error("Gagal memuat gambar. Pastikan URL gambar mengizinkan akses cross-origin."));
-    });
+@font-face {
+    font-family: 'Gotham';
+    src: url('Gotham-Regular.woff2') format('woff2'),
+         url('Gotham-Regular.woff') format('woff');
+    font-weight: normal;
 }
 
-async function downloadTwibbon() {
-    let canvas = document.createElement("canvas");
-    let ctx = canvas.getContext("2d");
+body {
+    font-family: 'Gotham', Montserrat, sans-serif;
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
 
-    const CANVAS_SIZE = 1000;
-    canvas.width = CANVAS_SIZE;
-    canvas.height = CANVAS_SIZE;
+.wrapper {
+    max-width: 400px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
 
-    try {
-        let img = await loadImage(twibbonImg.src);
-        ctx.drawImage(img, 0, 0, CANVAS_SIZE, CANVAS_SIZE);
+.container {
+    position: relative;
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+}
 
-        ctx.fillStyle = "#084a63";
-        ctx.textAlign = "center";
+.twibbon-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
 
-        ctx.font = "bold 30px Gotham, Montserrat, sans-serif";
-        const nameY = CANVAS_SIZE - 120;
-        ctx.fillText(inputName.value || "Nama", CANVAS_SIZE / 2, nameY);
+.text-overlay {
+    position: absolute;
+    width: 100%;
+    bottom: 20px;
+    left: 0;
+    text-align: center;
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.1;
+}
 
-        ctx.font = "20px Gotham, Montserrat, sans-serif";
-        const positionY = nameY + 30;
-        ctx.fillText(inputPosition.value || "Keterangan", CANVAS_SIZE / 2, positionY);
+.name {
+    font-weight: bold;
+    font-size: 13px;
+    color: #2887bf;
+}
 
-        let link = document.createElement("a");
-        link.href = canvas.toDataURL("image/png");
-        link.download = "Tahniah Idulfitri.png";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    } catch (error) {
-        alert(error.message);
-    }
+.position {
+    font-size: 10px;
+    color: #2887bf;
+}
+
+.input-section {
+    margin-top: 15px;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-section input,
+.input-section button {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: 'Gotham', Montserrat, sans-serif;
+}
+
+button {
+    padding: 10px;
+    background-color: #084a63;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.social-icons {
+    margin-top: 15px;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.fa-facebook { color: #1877F2; }
+.fa-instagram { color: #E4405F; }
+.fa-youtube { color: #FF0000; }
+
+.source {
+    margin-top: 15px;
+    font-size: 14px;
+    opacity: 0.75;
+}
+
+.source a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
 }
