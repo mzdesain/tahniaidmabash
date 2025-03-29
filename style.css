@@ -1,5 +1,19 @@
+@font-face {
+    font-family: 'Gotham';
+    src: url('Gotham-Bold.woff2') format('woff2'),
+         url('Gotham-Bold.woff') format('woff');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('Gotham-Regular.woff2') format('woff2'),
+         url('Gotham-Regular.woff') format('woff');
+    font-weight: normal;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Gotham', Montserrat, sans-serif;
     text-align: center;
     background-color: #f8f9fa;
     padding: 20px;
@@ -22,15 +36,15 @@ body {
 }
 
 .twibbon-img {
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: auto;
     border-radius: 10px;
 }
 
 .text-overlay {
     position: absolute;
     width: 100%;
-    bottom: 30px;
+    bottom: 20px;
     left: 0;
     text-align: center;
     color: #fff;
@@ -40,26 +54,35 @@ body {
 
 .name {
     font-weight: bold;
-    font-size: 15px;
+    font-size: 13px;
+    color: #2887bf;
 }
 
 .position {
-    font-style: italic;
-    font-size: 12px;
+    font-size: 10px;
+    color: #2887bf;
 }
 
 .input-section {
     margin-top: 15px;
+    padding: 0 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.input-section input,
+.input-section button {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 100%;
+    font-size: 14px;
+    font-family: 'Gotham', Montserrat, sans-serif;
 }
 
 button {
@@ -69,10 +92,12 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 14px;
 }
 
 button:disabled {
     background-color: #ccc;
+    cursor: not-allowed;
 }
 
 .social-icons {
@@ -97,6 +122,6 @@ button:disabled {
 
 .source a {
     text-decoration: none;
-    color: #084a63;
+    color: #007bff;
     font-weight: bold;
 }
