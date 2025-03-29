@@ -51,16 +51,24 @@ body {
 
 .input-section {
     margin-top: 15px;
+    padding: 0 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.input-section input,
+.input-section button {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 100%;
+    font-size: 14px;
+    font-family: 'Gotham', Montserrat, sans-serif;
 }
 
 button {
@@ -70,10 +78,12 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 14px;
 }
 
 button:disabled {
     background-color: #ccc;
+    cursor: not-allowed;
 }
 
 .social-icons {
